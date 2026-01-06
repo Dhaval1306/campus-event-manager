@@ -1,8 +1,17 @@
-import { auth } from "./firebase"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
 
 function App() {
-  console.log(auth)
-  return <h1>Firebase Connected</h1>
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/register" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App
