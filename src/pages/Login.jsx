@@ -55,7 +55,8 @@ function Login() {
       }
 
       // 🚀 Redirect by role
-      navigate(role === "organizer" ? "/organizer" : "/student")
+      navigate("/home")
+
       console.log("EMAIL:", email)
       console.log("DETECTED ROLE:", role)
 

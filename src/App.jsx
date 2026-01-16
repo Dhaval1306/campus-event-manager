@@ -4,6 +4,8 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import CreateEvent from "./pages/organizer/CreateEvent"
 import OrganizerDashboard from "./pages/organizer/OrganizerDashboard"
 import StudentDashboard from "./pages/student/StudentDashboard"
+import Home from "./pages/home/Home"
+import EventDetail from "./pages/event/EventDetail"
 
 function App() {
   return (
@@ -33,6 +35,22 @@ function App() {
         element={
           <ProtectedRoute allowedRole="organizer">
             <CreateEvent />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/event/:id"
+        element={
+          <ProtectedRoute>
+            <EventDetail />
           </ProtectedRoute>
         }
       />
