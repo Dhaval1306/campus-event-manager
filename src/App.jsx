@@ -1,16 +1,42 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import Login from "./pages/Login"
-import Register from "./pages/Register"
+import ProtectedRoute from "./components/ProtectedRoute"
+import CreateEvent from "./pages/organizer/CreateEvent"
+import OrganizerDashboard from "./pages/organizer/OrganizerDashboard"
+import StudentDashboard from "./pages/student/StudentDashboard"
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/register" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Login />} />
+
+      <Route
+        path="/student"
+        element={
+          <ProtectedRoute allowedRole="student">
+            <StudentDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/organizer"
+        element={
+          <ProtectedRoute allowedRole="organizer">
+            <OrganizerDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/organizer/events/create"
+        element={
+          <ProtectedRoute allowedRole="organizer">
+            <CreateEvent />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   )
 }
 
